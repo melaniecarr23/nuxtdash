@@ -1,0 +1,19 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@formkit/nuxt": "^1.6.5",
+    "@pinia/nuxt": "^0.5.2",
+    "nuxt": "^3.12.4",
+    "vue": "latest",
+    "vuetify-nuxt-module": "^0.16.1"
+  }
+}
