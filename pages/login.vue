@@ -2,18 +2,16 @@
   <VContainer>
     <VRow justify="center">
       <VCol cols="12" sm="8" md="4" lg="3">
-
-        <VForm @submit.prevent="login">
+        <VForm @submit.prevent="onLogin">
           <VCard>
             <VCardTitle>Login</VCardTitle>
             <VCardText>
               <VTextField label="Email" v-model='input.email' />
               <VTextField label="Password" v-model='input.password' />
-              <VBtn>Login</VBtn>
             </VCardText>
             <VCardActions>
               <VSpacer />
-              <VBtn type="submit">Login</VBtn>
+              <VBtn type="submit" variant="elevated" color="primary" class="px-5" prepend-icon="mdi-check">Login</VBtn>
             </VCardActions>
           </VCard>
         </VForm>
@@ -25,27 +23,24 @@
 <script lang="ts" setup>
   const config = useRuntimeConfig()
 
+  const { login } = useSanctumAuth()
+
+
   const input = ref({
     email: 'test@gmail.com',
     password: '123123'
   })
 
-  function login() {
-    $fetch(config.public.apiBase + '/auth/login', {
-      method: 'POST',
-      body: input.value
-    }).then((data: any) => {
-      if (data) {
-        console.log(data)
-        useUserStore().setToken(data.accessToken)
-        useUserStore().setUser(data.user)
-        useRouter().replace('/')
-      }
+  function onLogin() {
+    login(input.value).then(data => {
+      console.log(data)
+      useUserStore().setToken(data.accessToken)
+      useUserStore().setUser(data.user)
+      useRouter().replace('/')
+
     })
-
-
-
   }
+
 </script>
 
 <style></style>
