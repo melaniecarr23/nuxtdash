@@ -10,12 +10,16 @@
   const config = useRuntimeConfig()
   const userStore = useUserStore()
 
-  const { data: user } = await useAsyncData(
+  const { user } = storeToRefs(userStore)
+
+  useAsyncData(
     'user',
     () => $fetch(config.public.apiURL + '/auth/user', {
       headers: userStore.authorizationHeader
+    }).then((data: any) => {
+      userStore.setUser(data)
     })
-  );
+  )
 
   onMounted(() => {
     if (!userStore.isAuthenticated) {

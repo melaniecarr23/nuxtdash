@@ -36,7 +36,6 @@
       method: 'POST',
       body: input.value
     }).then((data: any) => {
-
       if (data) {
         useUserStore().setToken(data.accessToken)
         useRouter().replace('/')
