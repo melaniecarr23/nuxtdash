@@ -8,8 +8,7 @@
 
 <script lang="ts" setup>
 
-  const userStore = useUserStore()
-  const { user } = storeToRefs(userStore)
+const user = useSanctumUser()
   
 </script>
 
