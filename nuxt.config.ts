@@ -6,16 +6,18 @@ export default defineNuxtConfig({
   modules: ['@vueuse/nuxt', "@pinia/nuxt", "vuetify-nuxt-module", "nuxt-auth-sanctum"],
   runtimeConfig: {
     public: {
-      baseURL: 'https://localhost',
-      apiBase: 'https://localhost:8000/api',
+      apiURL: 'http://localhost:8000/api',
     },
   },
   sanctum: {
-    mode: 'token',
-    baseUrl: 'https://dash.test', // Laravel API
+    baseUrl: 'http://localhost:8000', // Laravel API
     endpoints: {
-      login: 'api/login',
-      logout: 'api/logout'
-    }
+      login: '/login',
+      logout: '/logout',
+    },
+    csrf: {
+      cookie: 'XSRF-TOKEN',
+      header: 'X-XSRF-TOKEN',
+    },
   },
 })

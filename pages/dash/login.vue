@@ -21,26 +21,32 @@
 </template>
 
 <script lang="ts" setup>
-  const config = useRuntimeConfig()
+definePageMeta({
+  middleware: ['sanctum:guest']
+})
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useDashStore } from '~/stores/dashStore'
 
-  const { login } = useSanctumAuth()
+const router = useRouter()
+const { login } = useSanctumAuth()
+const dashStore = useDashStore()
 
+const input = ref({
+  email: 'test@gmail.com',
+  password: '123123'
+})
 
-  const input = ref({
-    email: 'test@gmail.com',
-    password: '123123'
-  })
-
-  function onLogin() {
-    login(input.value).then(data => {
-      console.log(data)
-      useUserStore().setToken(data.accessToken)
-      useUserStore().setUser(data.user)
-      useRouter().replace('/')
-
-    })
+async function onLogin() {
+  try {
+    const { data } = await login(input.value)
+    console.log(data)
+    dashStore.setUser(data.user) // Assuming the user data is returned as `data.user`
+    router.replace('/dash')
+  } catch (error) {
+    console.error('Login failed', error)
   }
-
+}
 </script>
 
 <style></style>
