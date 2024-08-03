@@ -3,7 +3,6 @@
     <VRow justify="center">
       <VCol cols="12" sm="8" md="4" lg="3">
 
-
         <VForm @submit.prevent="login">
           <VCard>
             <VCardTitle>Login</VCardTitle>
@@ -32,12 +31,14 @@
   })
 
   function login() {
-    $fetch(config.public.apiURL + '/auth/login', {
+    $fetch(config.public.apiBase + '/auth/login', {
       method: 'POST',
       body: input.value
     }).then((data: any) => {
       if (data) {
+        console.log(data)
         useUserStore().setToken(data.accessToken)
+        useUserStore().setUser(data.user)
         useRouter().replace('/')
       }
     })

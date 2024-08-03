@@ -5,7 +5,8 @@ export default defineNuxtConfig({
   modules: ["@pinia/nuxt", "vuetify-nuxt-module"],
   runtimeConfig: {
     public: {
-      apiURL: 'https://dash.test/api',
+      baseURL: 'https://localhost',
+      apiBase: 'https://localhost:8000/api',
     },
   },
 })
