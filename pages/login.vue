@@ -36,10 +36,13 @@
       method: 'POST',
       body: input.value
     }).then((data: any) => {
-      if (data) {
-        useUserStore().setToken(data.accessToken)
-        useRouter().replace('/')
-      }
+      useUserStore().setToken(data.accessToken)
+      return $fetch(config.public.apiURL + '/auth/user', {
+        headers: useUserStore().authorizationHeader
+      })
+    }).then((data: any) => {
+      useUserStore().setUser(data)
+      useRouter().replace('/')
     })
 
 

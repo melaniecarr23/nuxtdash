@@ -2,7 +2,8 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  modules: ["@pinia/nuxt", "vuetify-nuxt-module"],
+  ssr: false,
+  modules: ['@vueuse/nuxt', "@pinia/nuxt", "vuetify-nuxt-module"],
   runtimeConfig: {
     public: {
       apiURL: 'https://dash.test/api',

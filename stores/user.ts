@@ -1,3 +1,5 @@
+import { useStorage as vueUseStorage, StorageSerializers } from "@vueuse/core"
+
 interface User {
   id: number
   name: string
@@ -8,13 +10,22 @@ interface User {
 
 }
 
-export const useUserStore = defineStore({
-  id: 'myUserStore',
+export const useUserStore = defineStore('UserStore', {
   state: () => ({
-    token: '',
-    user: {} as User,
+    token: vueUseStorage('token', ''),
+    user: vueUseStorage('user', {}, undefined, {
+      serializer: {
+        read: (v: any) => {
+          console.log('Read user data');
+          
+          return v ? JSON.parse(v) : null
+        },
+        write: (v: any) => JSON.stringify(v),
+      },
+    },),
   }),
   getters: {
+    me: (state) => state.user,
     isAuthenticated: (state) => !!state.token,
     authorizationHeader: (state) => {
       return {
