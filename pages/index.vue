@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <h1>Public Dash</h1>
-    <p>This is the area for innerhealer.org public site</p>
-  </div>
+  <VContainer>
+    <VCard title="Welcome to Nuxt.js" subtitle="This is the area for innerhealer.org public site">
+      <VCardItem>
+        <VBtn to="/dash" color="primary">Go to Dashboard</VBtn>
+      </VCardItem>
+    </VCard>
+  </VContainer>
 </template>
 
 <script lang="ts" setup>
 
-  definePageMeta({
-    middleware: ['sanctum:guest']
-  })
 </script>
 
 <style></style>

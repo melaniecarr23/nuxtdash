@@ -1,18 +1,8 @@
 <script setup lang="ts">
-definePageMeta({
-  middleware: ['sanctum:auth']
-})
-import { useDashStore } from '~/stores/dashStore'
-const dashStore = useDashStore()
-const user = dashStore.user
-await fetch('sanctum/csrf-cookie')
 </script>
 
 <template>
-<h1>Doc Dash Index</h1>
-  <p>Welcome </p>
+  <VCard title="Dash Index" subtitle="Page for authenticated users only"></VCard>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
