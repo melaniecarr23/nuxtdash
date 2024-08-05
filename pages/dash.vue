@@ -16,11 +16,9 @@
 </template>
 
 <script lang="ts" setup>
-  definePageMeta({
-    middleware: ['sanctum:auth'],
-  })
+  const { logout } = useAuth()
 
   function onLogout() {
-    useSanctumAuth().logout()
+    useAuth().logout()
   }
 </script>

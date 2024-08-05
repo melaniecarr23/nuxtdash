@@ -21,11 +21,11 @@
 </template>
 
 <script lang="ts" setup>
-  const { login } = useSanctumAuth()
-
+  // const { login } = useSanctumAuth()
+const { login } = useAuth()
   const input = ref({
-    email: 'test@gmail.com',
-    password: '123123'
+    email: 'melaniecarr23@protonmail.com',
+    password: 'Abovedownhi1!'
   })
 
   function onLogin() {

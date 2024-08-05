@@ -1,9 +1,10 @@
 <script setup lang="ts">
-
+const { logout } = useAuth();
+logout();
 </script>
 
 <template>
-  $END$
+<div>Logging out...</div>
 </template>
 
 <style scoped>
